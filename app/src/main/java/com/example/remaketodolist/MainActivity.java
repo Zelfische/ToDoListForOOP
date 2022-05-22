@@ -15,11 +15,10 @@ import com.example.remaketodolist.Utils.DatabaseHandler;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements DialogCloseListener {
+public class MainActivity extends AppCompatActivity implements DialogCloseListener { //inheritance of interface class named dialogcloselistener
 
     private RecyclerView taskRecyclerview;
     private ToDoAdapter tasksAdapter;
@@ -42,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
 
 
         taskRecyclerview = findViewById(R.id.tasksRecyclerView);
-        taskRecyclerview.setLayoutManager(new LinearLayoutManager(this));
+        taskRecyclerview.setLayoutManager(new LinearLayoutManager(this)); //setting the recyclerview as linear layout
         tasksAdapter = new ToDoAdapter(db,this);
         taskRecyclerview.setAdapter(tasksAdapter);
 
@@ -65,9 +64,9 @@ public class MainActivity extends AppCompatActivity implements DialogCloseListen
 
     }
     @Override
-    public void handleDialogClose(DialogInterface dialog){
+    public void handleDialogClose(DialogInterface dialog){ //polymorphed from interface class
         taskList = db.getAllTasks();
-        Collections.reverse(taskList);
+        Collections.reverse(taskList); //for recently added task will be moved to the top
         tasksAdapter.setTask(taskList);
         tasksAdapter.notifyDataSetChanged();
     }

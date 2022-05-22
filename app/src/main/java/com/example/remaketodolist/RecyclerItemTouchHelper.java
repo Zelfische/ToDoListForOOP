@@ -19,12 +19,12 @@ public class RecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback {
     private ToDoAdapter adapter;
 
     public RecyclerItemTouchHelper(ToDoAdapter adapter){
-        super(0,ItemTouchHelper.LEFT |ItemTouchHelper.RIGHT);
+        super(0,ItemTouchHelper.LEFT |ItemTouchHelper.RIGHT); //for swiping
         this.adapter = adapter;
     }
 
     @Override
-    public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target){
+    public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target){ //line 22 todoadapter.java
         return false;
     }
 
@@ -32,7 +32,7 @@ public class RecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback {
     public void onSwiped(final RecyclerView.ViewHolder viewHolder, int direction){
         final int position = viewHolder.getAdapterPosition();
         if(direction == ItemTouchHelper.LEFT){
-            AlertDialog.Builder builder = new AlertDialog.Builder(adapter.getContext());
+            AlertDialog.Builder builder = new AlertDialog.Builder(adapter.getContext()); //prompt for deleting
             builder.setTitle("Delete Task");
             builder.setMessage(" Are you sure you want to delete this task?");
             builder.setPositiveButton("Confirm",
@@ -61,7 +61,7 @@ public class RecyclerItemTouchHelper extends ItemTouchHelper.SimpleCallback {
     @Override
     public void onChildDraw(Canvas c, RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, float dX, float dY , int actionState, boolean isCurrentlyActive){
         super.onChildDraw(c, recyclerView,viewHolder,dX,dY,actionState,isCurrentlyActive);
-
+            //methods for swipe features
         Drawable icon;
         ColorDrawable background;
 
